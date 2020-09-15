@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+#import request
 import plotly.express as px
 from sklearn.model_selection import train_test_split  
 from sklearn.linear_model import LinearRegression  
@@ -57,7 +58,7 @@ result=''
 if st.button("Predict Score"):
     result = model.predict(hr.astype(np.float64))
     result = float(result)
-    st.success("Predicted Score is = {:.2f} % ".format(result))
-
-    
-    
+    if result >= 100:
+        st.success("Predicted Score is = 100 %")
+    else:
+        st.success("Predicted Score is = {:.2f} % ".format(result))
