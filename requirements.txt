@@ -4,6 +4,6 @@ scikit-learn==0.22.1
 matplotlib>=1.4.3
 seaborn
 pandas>=0.19
-request>=0.0.0
+request>=2.23.0
 streamlit
 plotly
