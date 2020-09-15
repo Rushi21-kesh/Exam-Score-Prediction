@@ -11,6 +11,5 @@ matplotlib>=1.4.3
 seaborn
 flasgger==0.9.4
 pandas>=0.19
-request>=2.23.0
 streamlit
 plotly
