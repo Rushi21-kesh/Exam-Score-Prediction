@@ -49,16 +49,24 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 st.title(" Predicting Score of Exam ")
 st.markdown("### How many hour you study ?")
-hour = st.text_input("  "," ")
+hour = st.slider("Hour of Day",0,24)
 hr=np.reshape(hour,(-1,1))
 st.markdown("### How much score you expect ?")
-escore = st.text_input(" "," ")
+escore = st.slider("Hour of Day",0,100)
 #own_pred = model.predict(hr)
 result=''
 if st.button("Predict Score"):
     result = model.predict(hr.astype(np.float64))
     result = float(result)
     if result >= 100:
-        st.success("Predicted Score is = 100 %")
+        result=100
+        st.success("Predicted Score is = {:.2f} % ".format(result))
     else:
         st.success("Predicted Score is = {:.2f} % ".format(result))
+    
+    dt=[['Expected Score',escore],['Predicted Score',result]]
+    df = pd.DataFrame(dt, columns = ['Expected Score', 'Predicted Score'])
+    st.write(df)
+    sns.barplot(df,height=100)
+    #plt.bar(df['Expected Score'],df['Predicted Score'],height=100)
+    st.pyplot()
