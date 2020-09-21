@@ -49,7 +49,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 st.title(" Predicting Score of Exam ")
 st.markdown("### How many hour you study ?")
-hour = st.slider("Hour of Day",0,24)
+hour = st.slider("Hour of Day",0,10)
 hr=np.reshape(hour,(-1,1))
 st.markdown("### How much score you expect ?")
 escore = st.slider("Hour of Day",0,100)
@@ -64,9 +64,19 @@ if st.button("Predict Score"):
     else:
         st.success("Predicted Score is = {:.2f} % ".format(result))
     
-    dt=[['Expected Score',escore],['Predicted Score',result]]
-    df = pd.DataFrame(dt, columns = ['Expected Score', 'Predicted Score'])
-    st.write(df)
-    sns.barplot(df,height=100)
-    #plt.bar(df['Expected Score'],df['Predicted Score'],height=100)
-    st.pyplot()
+
+    #dt=[escore,result]
+    #df = pd.DataFrame(dt, columns = ['Score'])
+    #st.write(df)
+    #df.plot.bar(figsize=(10,6))
+    #st.pyplot()
+    dat = {'Expected Score ':escore,'Predicted Score':result}
+    test = list(dat.keys())
+    score = list(dat.values())
+    plt.figure(figsize = (7,5)) 
+    plt.bar(test,score,color='#666666',width=0.5)
+
+    plt.xlabel("S c o r e ") 
+    plt.ylabel("P e r c e n t a g e ") 
+    plt.title("EXpected Score v/s Predicted Score")
+    st.pyplot() 
