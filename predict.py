@@ -63,20 +63,19 @@ if st.button("Predict Score"):
         st.success("Predicted Score is = {:.2f} % ".format(result))
     else:
         st.success("Predicted Score is = {:.2f} % ".format(result))
-    
 
-    #dt=[escore,result]
-    #df = pd.DataFrame(dt, columns = ['Score'])
-    #st.write(df)
-    #df.plot.bar(figsize=(10,6))
-    #st.pyplot()
-    dat = {'Expected Score ':escore,'Predicted Score':result}
-    test = list(dat.keys())
-    score = list(dat.values())
-    plt.figure(figsize = (7,5)) 
-    plt.bar(test,score,color='#666666',width=0.5)
-
-    plt.xlabel("S c o r e ") 
-    plt.ylabel("P e r c e n t a g e ") 
-    plt.title("EXpected Score v/s Predicted Score")
-    st.pyplot() 
+    #if st.checkbox("Show Plot",value=False):
+        #dt=[escore,result]
+        #df = pd.DataFrame(dt, columns = ['Score'])
+        #st.write(df)
+        #df.plot.bar(figsize=(10,6))
+        #st.pyplot()
+        dat = {'Expected Score ':escore,'Predicted Score':result}
+        text = list(dat.keys())
+        score = list(dat.values())
+        plt.figure(figsize = (8,5))
+        plt.bar(text,score,color='#666666',width=0.5)
+        plt.ylabel("P e r c e n t a g e ") 
+        plt.title("Expected Score v/s Predicted Score")
+        plt.ylim(0,100)
+        st.pyplot() 
